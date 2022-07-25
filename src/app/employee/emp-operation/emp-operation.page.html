@@ -1,0 +1,109 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="emp-title">{{formType === 'add'? 'Employee Add': 'Employee Edit'}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="emp-filter-content">
+  <form class="emp-filter-form"
+        [formGroup]="empOperationForm"
+        (ngSubmit)="formType === 'add'? submitAddForm(): submitEditForm()"
+        novalidate>
+
+    <!-- Employee Name -->
+    <ion-item>
+      <ion-label class="required"
+                 position="floating">Employee Name</ion-label>
+      <ion-input formControlName="name"
+                 maxlength="12"
+                 type="text"></ion-input>
+    </ion-item>
+    <span class="error ion-padding"
+          *ngIf="isSubmitted && operationErrorControl.name.errors?.required">
+      Name is required.
+    </span>
+
+    <!-- Department Name -->
+    <ion-item class="search-type">
+      <ion-label position="floating"
+                 class="required">Department Name</ion-label>
+      <ion-select interface="popover"
+                  formControlName="department">
+        <ion-select-option *ngFor="let department of departments; let i = index;"
+                           value="{{department}}">{{department}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <span class="error ion-padding"
+          *ngIf="isSubmitted && operationErrorControl.department.errors?.required">
+      Department is required.
+    </span>
+
+    <ion-item id="dob-modal">
+      <ion-label>Dob</ion-label>
+      <ion-input [value]="dateValue">
+      </ion-input>
+      <ion-icon icon="calendar-outline"
+                slot="end"></ion-icon>
+    </ion-item>
+
+    <ion-modal trigger="dob-modal"
+               class="dob-modal">
+      <ng-template>
+        <ion-content>
+          <ion-datetime #datetime
+                        locale="en-GB-u-hc-h12"
+                        formControlName="dob"
+                        displayFormat="dd/MM/YYYY"
+                        size="cover"
+                        (ionChange)="getDate(datetime.value)"
+                        (ionCancel)="showPicker = false;">
+            <ion-buttons slot="buttons">
+              <ion-button (click)="close()">Dismiss</ion-button>
+              <ion-button (click)="select()"
+                          color='primary'>Select</ion-button>
+            </ion-buttons>
+          </ion-datetime>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+    <!-- Position -->
+    <ion-item class="search-type">
+      <ion-label position="floating"
+                 class="required">Position</ion-label>
+      <ion-select interface="popover"
+                  formControlName="position">
+        <ion-select-option *ngFor="let position of positions; let i = index;"
+                           value="{{position}}">{{position}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <span class="error ion-padding"
+          *ngIf="isSubmitted && operationErrorControl.position.errors?.required">
+      Position is required.
+    </span>
+    <!-- NRC -->
+    <ion-item lines="full">
+      <ion-label position="floating">NRC</ion-label>
+      <ion-input formControlName="nrc"
+                 maxlength="12"
+                 type="text"></ion-input>
+    </ion-item>
+    <!-- Salary -->
+    <ion-item lines="full">
+      <ion-label position="floating">Salary</ion-label>
+      <ion-input formControlName="salary"
+                 maxlength="28"
+                 type="text"
+                 [(ngModel)]="salary"
+                 (keyup)="formatInput()"></ion-input>
+    </ion-item>
+    <ion-row class="filter-operation-row">
+      <ion-col class="filter-operation-col">
+        <ion-button class="filter-margin"
+                    color="danger"
+                    (click)="cancelOperation()">Cancel</ion-button>
+        <ion-button type="submit"
+                    class="filter-margin search-btn"
+                    color="success">{{formType === 'add' ? 'Save':'Update'}}</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>

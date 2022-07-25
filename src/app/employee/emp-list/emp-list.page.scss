@@ -1,0 +1,138 @@
+.emp-list-filter,
+.emp-list-clear,
+.emp-list-new {
+    float: right;
+    font-size: 25px;
+    margin: 9px;
+    margin-top: 12px;
+    color: green;
+}
+
+.pager-limit {
+    max-width: 100px;
+    padding-top: 14px;
+}
+
+.pagination-label {
+    float: left;
+    padding-top: 14px;
+    padding-left: 18px;
+}
+
+.emp-list-filter {
+    color: coral;
+}
+
+.emp-list-clear {
+    color: darkred;
+}
+
+.emp-list-new {
+    font-size: 24px;
+    color: cornflowerblue;
+}
+
+.emp-data {
+    padding: 5px;
+}
+
+.emp-border {
+    border-left: 1px solid grey;
+}
+
+.emp-data-card {
+    width: 100%;
+    float: left;
+    font-size: 52px;
+    padding-bottom: 20px;
+
+    .emp-profile-container {
+        line-height: 50px;
+
+    }
+
+
+    .emp-data-info,
+    .emp-data-operation {
+        float: left;
+        line-height: 1.2;
+
+        .emp-edit-icon {
+            float: right;
+            font-size: 20px;
+            color: green;
+            cursor: pointer;
+        }
+
+        .emp-delete-icon {
+            float: right;
+            font-size: 20px;
+            color: red;
+            margin-right: 20px;
+            cursor: pointer;
+        }
+
+    }
+
+    .emp-data-operation {
+        float: right;
+    }
+}
+
+.error-msg {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+//pagination
+
+.items {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.items__item {
+    margin: 1rem 0;
+    border: 1px solid lightgray;
+}
+
+.items__item--active {
+    background: lightgray;
+}
+
+.items__item:not(.items__item--active) {
+    cursor: pointer;
+}
+
+.items__item a {
+    padding: 0.5rem;
+    display: block;
+}
+
+
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    max-width: 960px;
+    list-style: none;
+    padding: 0;
+    margin-top: 2rem;
+}
+
+.pagination__item:not(.pagination__item--disabled) {
+    color: #25259a;
+    cursor: pointer;
+}
+
+.pagination__item a {
+    padding: 0.5rem 1rem;
+    border: 1px solid lightgray;
+}
+
+.pagination__item--active a {
+    color: #f0f0f0;
+    background: #25259a;
+    border: 1px solid #25259a;
+}

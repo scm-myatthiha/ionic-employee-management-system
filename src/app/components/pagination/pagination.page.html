@@ -1,0 +1,53 @@
+<nav aria-label="Pagination">
+  <ul>
+    <li class="pagination-padding">
+      <div [attr.aria-disabled]="current === 1"
+           [ngClass]="current === 1 ? 'disabled':'display-icon'"
+           (click)="onGoTo(1)">
+        <span aria-label="Go To Next Page"
+              name="chevron-forward-outline">&lt;&lt;</span>
+      </div>
+
+    </li>
+    <li class="pagination-padding ">
+      <div aria-label="Go To Previous Page"
+           [attr.aria-disabled]="current === 1"
+           [ngClass]="current === 1 ? 'disabled':'display-icon'"
+           (click)="onPrevious()">
+        <span aria-label="Go To Next Page"
+              name="chevron-forward-outline">&lt;</span>
+      </div>
+    </li>
+    <li *ngFor="let page of pages; index as i">
+      <a *ngIf="page !== -1; else more"
+         class="internal"
+         [attr.aria-current]="page === current ? 'page' : null"
+         [attr.aria-label]="
+          page === current ? 'Current Page, Page ' + page : 'Go to Page ' + page
+        "
+         [class.current]="page === current"
+         tabindex="0"
+         (click)="onGoTo(page)"
+         (keyup.enter)="onGoTo(page)">{{ page }}</a>
+      <ng-template #more>
+        <a class="more"> ... </a>
+      </ng-template>
+    </li>
+    <li class="pagination-padding ">
+      <div [attr.aria-disabled]="current === total"
+           [ngClass]="current === total ? 'disabled':'display-icon'"
+           (click)="onNext()">
+        <span aria-label="Go To Next Page"
+              name="chevron-forward-outline">&gt;</span>
+      </div>
+    </li>
+    <li class="pagination-padding ">
+      <div [attr.aria-disabled]="current === total"
+           [ngClass]="current === total ? 'disabled':'display-icon'"
+           (click)="onGoTo(total)">
+        <span aria-label="Go To Next Page"
+              name="chevron-forward-outline">&gt;&gt;</span>
+      </div>
+    </li>
+  </ul>
+</nav>
